@@ -23,6 +23,7 @@ function! Pl#Segment#Create(name, ...) " {{{
 	let modes = s:default_modes
 	let padding = 1
 	let segments = []
+	let default_color_alias = ''
 
 	for param in a:000
 		" Lookup modes for this segment/group
@@ -30,6 +31,8 @@ function! Pl#Segment#Create(name, ...) " {{{
 			let modes = param[1]
 		elseif type(param) == type([]) && param[0] == 'nopadding'
 			let padding = 0
+		elseif type(param) == type([]) && param[0] == 'color'
+			let default_color_alias = param[1]
 		elseif type(a:1) == type([]) && a:1[0] == 'segment'
 			call add(segments, param[1])
 		endif
@@ -45,6 +48,7 @@ function! Pl#Segment#Create(name, ...) " {{{
 			\ , 'segments': segments
 			\ , 'modes': modes
 			\ , 'padding': padding
+			\ , 'default_color_alias': default_color_alias
 			\ }]
 	else
 		" This is a single segment
@@ -67,6 +71,7 @@ function! Pl#Segment#Create(name, ...) " {{{
 			\ , 'text': text
 			\ , 'modes': modes
 			\ , 'padding': padding
+			\ , 'default_color_alias': default_color_alias
 			\ }]
 	endif
 

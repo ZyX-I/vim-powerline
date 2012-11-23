@@ -76,6 +76,9 @@
 		if ! Pl#LoadCache()
 			try
 				" Autoload the theme dict first
+				if g:Powerline_theme is# 'default'
+					runtime! autoload/Powerline/ForeignInit/*.vim
+				endif
 				let raw_theme = g:Powerline#Themes#{g:Powerline_theme}#theme
 			catch
 				echom 'Invalid Powerline theme! Please check your theme and colorscheme settings.'

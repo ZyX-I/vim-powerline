@@ -67,6 +67,9 @@ function! Pl#Colorscheme#Apply(colorscheme, buffer_segments) " {{{
 						break
 					endif
 				endfor
+				if has_key(segment, 'colors') && has_key(colorscheme, segment.default_color_alias)
+					let segment.colors = colorscheme[segment.default_color_alias]
+				endif
 
 				" The reason why we need to deepcopy the group's segments is that the child segments
 				" all point to the same base segments and that screws up highlighting if we highlight
@@ -130,6 +133,9 @@ function! Pl#Colorscheme#Apply(colorscheme, buffer_segments) " {{{
 						break
 					endif
 				endfor
+				if has_key(segment, 'colors') && has_key(colorscheme, segment.default_color_alias)
+					let segment.colors = colorscheme[segment.default_color_alias]
+				endif
 			endif
 
 			unlet! segment

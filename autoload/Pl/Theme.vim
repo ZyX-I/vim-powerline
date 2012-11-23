@@ -19,7 +19,6 @@ function! Pl#Theme#Callback(name, expr) " {{{
 endfunction " }}}
 function! Pl#Theme#Buffer(ns, ...) " {{{
 	let segments = []
-	let ns = ! empty(a:ns) ? a:ns .':' : ''
 
 	" Match namespace parameter by default
 	let matches = Pl#Match#Any(a:ns)
@@ -47,9 +46,9 @@ function! Pl#Theme#Buffer(ns, ...) " {{{
 			endif
 
 			" printf segment, append ns to first item in list
-			let item[0] = ns . item[0]
+			let item[0] = item[0]
 		else
-			let item = ns . item
+			let item = item
 		endif
 
 		let segment = Pl#Segment#Get(item)
